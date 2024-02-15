@@ -1,6 +1,7 @@
 // this is general thread card not the thread details page where we can read the all comments
 // just we show how the commenters are not show the actual comment
 
+import { formatDateString } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -118,7 +119,26 @@ const ThreadCard = ({
             </div>
           </div>
         </div>
+        {/* TODO: DeleteThread  */}
+        {/* TODO: Show Comment logos  */}
       </div>
+      {!isComment && community && (
+        <Link
+          href={`/communities/${community.id}`}
+          className="mt-5 flex items-center"
+        >
+          <p className="text-subtle-medium text-gray-1">
+            {formatDateString(createdAt)} - {community.name} Community
+          </p>
+          <Image
+            src={community.image}
+            alt={community.name}
+            width={14}
+            height={14}
+            className="ml-1 rounded-full object-cover"
+          />
+        </Link>
+      )}
     </article>
   );
 };
